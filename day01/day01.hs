@@ -7,7 +7,7 @@ part1 file = length . filter (== 0) . scanl rotate 50 . map parse . lines <$> re
     rotate pos x = (pos + x) `mod` 100
 
 part2 :: String -> IO Int
-part2 file = snd . foldl rotate (0, 50) . map parse . lines <$> readFile file
+part2 file = fst . foldl rotate (0, 50) . map parse . lines <$> readFile file
   where
     rotate :: (Int, Int) -> Int -> (Int, Int)
     rotate (clicks, pos) x = first ((+clicks) . abs) $ (pos + x) `divMod` 100
