@@ -1,1 +1,3 @@
 day*/*.txt
+.ghc.environment.*
+.vscode

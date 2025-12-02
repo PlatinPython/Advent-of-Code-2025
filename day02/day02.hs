@@ -1,9 +1,17 @@
 import Control.Monad (guard)
+import Criterion.Main (bench, defaultMain, nfIO)
 import Data.Either (fromRight)
 import Data.List (nub)
 import Text.Parsec (char, parse, sepBy1)
 import Text.Parsec.String (Parser)
 import Text.ParserCombinators.Parsec.Number (int)
+
+main :: IO ()
+main =
+  defaultMain
+    [ bench "Day 02 Part 1" $ nfIO $ part1 "day02/input.txt",
+      bench "Day 02 Part 2" $ nfIO $ part2 "day02/input.txt"
+    ]
 
 part1 :: String -> IO Int
 part1 file = sum . concatMap findInvalid . fromRight [] . parse parseRanges file <$> readFile file
