@@ -17,7 +17,7 @@ part1 file = sum . map (solve . reverse) . transpose . map words . lines <$> rea
     solve ("+" : xs) = sum . map read $ xs
     solve ("*" : xs) = product . map read $ xs
 
--- part2 :: String -> IO Int
+part2 :: String -> IO Int
 part2 file = sum . map solve . splitWhen null . map (filter (not . isSpace)) . transpose . lines <$> readFile file
   where
     solve :: [String] -> Int
